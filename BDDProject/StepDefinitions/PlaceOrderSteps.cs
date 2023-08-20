@@ -57,7 +57,6 @@ namespace BDDProject.PlaceOrderSteps
             billing.PlaceOrder();
 
             StaticHelpers.WaitForElement(_driver, By.CssSelector("#post-6 > div > div > div > ul > li.woocommerce-order-overview__date.date > strong"), 3);
-            //Can't get this to work ^^^
 
             //Thread.Sleep(3000);
         }

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
 using System.Diagnostics;
+using uk.co.nfocus.jack.cunliffe.ecommerceproject.Utilities;
 
 namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
 {
@@ -22,10 +23,38 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
         //Locators
         private IWebElement _couponTextBox => _driver.FindElement(By.CssSelector("#coupon_code"));
         private IWebElement _applyCoupon => _driver.FindElement(By.CssSelector("#post-5 > div > div > form > table > tbody > tr:nth-child(2) > td > div > button"));
-        private IWebElement _couponDiscountText;
-        private IWebElement _subTotalText;
-        private IWebElement _shippingCostText;
-        private IWebElement _totalText;
+        private IWebElement _couponDiscountText
+        {
+            get
+            {
+                StaticHelpers.WaitForElement(_driver, By.CssSelector("#post-5 > div > div > div.cart-collaterals > div > table > tbody > tr.cart-discount.coupon-edgewords > td > span"), 5);
+                return _driver.FindElement(By.CssSelector("#post-5 > div > div > div.cart-collaterals > div > table > tbody > tr.cart-discount.coupon-edgewords > td > span"));
+            }
+        }
+        private IWebElement _subTotalText
+        {
+            get
+            {
+                StaticHelpers.WaitForElement(_driver, By.CssSelector("#post-5 > div > div > div.cart-collaterals > div > table > tbody > tr.cart-subtotal > td > span"), 5);
+                return _driver.FindElement(By.CssSelector("#post-5 > div > div > div.cart-collaterals > div > table > tbody > tr.cart-subtotal > td > span"));
+            }
+        }
+        private IWebElement _shippingCostText
+        {
+            get
+            {
+                StaticHelpers.WaitForElement(_driver, By.CssSelector("#shipping_method > li > label > span"), 5);
+                return _driver.FindElement(By.CssSelector("#shipping_method > li > label > span"));
+            }
+        }
+        private IWebElement _totalText
+        {
+            get
+            {
+                StaticHelpers.WaitForElement(_driver, By.CssSelector("#post-5 > div > div > div.cart-collaterals > div > table > tbody > tr.order-total > td > strong > span"), 5);
+                return _driver.FindElement(By.CssSelector("#post-5 > div > div > div.cart-collaterals > div > table > tbody > tr.order-total > td > strong > span"));
+            }
+        }
         private IWebElement _proceedToCheckout => _driver.FindElement(By.CssSelector("#post-5 > div > div > div.cart-collaterals > div > div > a"));
 
         public void InputCoupon(string coupon)
@@ -44,22 +73,22 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
 
         public string ReturnCoupon()
         {
-            _couponDiscountText = _driver.FindElement(By.CssSelector("#post-5 > div > div > div.cart-collaterals > div > table > tbody > tr.cart-discount.coupon-edgewords > td > span"));
+            //_couponDiscountText = _driver.FindElement(By.CssSelector("#post-5 > div > div > div.cart-collaterals > div > table > tbody > tr.cart-discount.coupon-edgewords > td > span"));
             return _couponDiscountText.Text.ToString();
         }
         public string ReturnTotal()
         {
-            _totalText = _driver.FindElement(By.CssSelector("#post-5 > div > div > div.cart-collaterals > div > table > tbody > tr.order-total > td > strong > span"));
+            //_totalText = _driver.FindElement(By.CssSelector("#post-5 > div > div > div.cart-collaterals > div > table > tbody > tr.order-total > td > strong > span"));
             return _totalText.Text.ToString();
         }
         public string ReturnSubTotal()
         {
-            _subTotalText = _driver.FindElement(By.CssSelector("#post-5 > div > div > div.cart-collaterals > div > table > tbody > tr.cart-subtotal > td > span"));
+            //_subTotalText = _driver.FindElement(By.CssSelector("#post-5 > div > div > div.cart-collaterals > div > table > tbody > tr.cart-subtotal > td > span"));
             return _subTotalText.Text.ToString();
         }
         public string ReturnShippingCost()
         {
-            _shippingCostText = _driver.FindElement(By.CssSelector("#shipping_method > li > label > span"));
+            //_shippingCostText = _driver.FindElement(By.CssSelector("#shipping_method > li > label > span"));
             return _shippingCostText.Text.ToString();
         }
 
