@@ -21,7 +21,8 @@ namespace BDDProject.PlaceOrderSteps
             _scenarioContext = scenarioContext;
             _driver = (IWebDriver)_scenarioContext["mydriver"];
         }
-        public void GivenIHaveLoggedIntoMyAccount()
+        [Given(@"I have logged in to my account using '(.*)' and '(.*)'")]
+        public void GivenIHaveLoggedInToMyAccountUsingAnd(string username, string password)
         {
             _driver.Url = "https://www.edgewordstraining.co.uk/demo-site/my-account/";
             LoginPagePOM login = new LoginPagePOM(_driver);

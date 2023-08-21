@@ -18,12 +18,12 @@ namespace BDDProject.CouponSteps
             _scenarioContext = scenarioContext;
             _driver = (IWebDriver)_scenarioContext["mydriver"];
         }
-        [Given(@"I have logged into my account")]
-        public void GivenIHaveLoggedIntoMyAccount()
+        [Given(@"I login to my account using '(.*)' and '(.*)'")]
+        public void GivenIHaveLoggedIntoMyAccount(string username, string password)
         {
             _driver.Url = "https://www.edgewordstraining.co.uk/demo-site/my-account/";
             LoginPagePOM login = new LoginPagePOM(_driver);
-            login.Login("jack.cunliffe@nfocus.co.uk", "Mu3Wbu!AstG!!6Z");
+            login.Login(username, password);
         }
 
         [Given(@"I add a hat to my basket")]
@@ -38,12 +38,12 @@ namespace BDDProject.CouponSteps
             shop.ViewCart();
         }
 
-        [When(@"I try to apply the coupon code edgewords")]
-        public void WhenITryToApplyTheCouponCodeEdgewords()
+        [When(@"I try to apply the coupon code '(.*)'")]
+        public void WhenITryToApplyTheCouponCodeEdgewords(string coupon)
         {
             CartPagePOM cart = new CartPagePOM(_driver);
 
-            cart.InputCoupon("edgewords");
+            cart.InputCoupon(coupon);
             cart.ApplyCoupon();
         }
 
