@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages;
 using uk.co.nfocus.jack.cunliffe.ecommerceproject.Utilities;
 
@@ -26,7 +27,9 @@ namespace BDDProject.PlaceOrderSteps
         {
             _driver.Url = "https://www.edgewordstraining.co.uk/demo-site/my-account/";
             LoginPagePOM login = new LoginPagePOM(_driver);
-            login.Login("jack.cunliffe@nfocus.co.uk", "Mu3Wbu!AstG!!6Z");
+            login.Login(username, password);
+
+            Console.WriteLine("Logged in successfully");
         }
 
         [Given(@"I add a hat to my cart")]
@@ -39,6 +42,8 @@ namespace BDDProject.PlaceOrderSteps
             shop.DismissBanner();
             shop.AddItem();
             shop.ViewCart();
+
+            Console.WriteLine("Item added to cart");
         }
 
         [When(@"I input my address")]
@@ -49,6 +54,8 @@ namespace BDDProject.PlaceOrderSteps
 
             BillingPagePOM billing = new BillingPagePOM(_driver);
             billing.FillBillingInfo("Jack", "Cunliffe", "24 London Street", "London", "SW1A 0AA", "020 7219 4272");
+
+            Console.WriteLine("Address filled in");
         }
 
         [When(@"I place the order")]
@@ -59,7 +66,7 @@ namespace BDDProject.PlaceOrderSteps
 
             StaticHelpers.WaitForElement(_driver, By.CssSelector("#post-6 > div > div > div > ul > li.woocommerce-order-overview__date.date > strong"), 3);
 
-            //Thread.Sleep(3000);
+            Console.WriteLine("Order placed");
         }
 
         [Then(@"the order is placed")]

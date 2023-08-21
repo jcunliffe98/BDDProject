@@ -24,6 +24,7 @@ namespace BDDProject.CouponSteps
             _driver.Url = "https://www.edgewordstraining.co.uk/demo-site/my-account/";
             LoginPagePOM login = new LoginPagePOM(_driver);
             login.Login(username, password);
+            Console.WriteLine("Logged in successfully");
         }
 
         [Given(@"I add a hat to my basket")]
@@ -36,6 +37,8 @@ namespace BDDProject.CouponSteps
             shop.DismissBanner();
             shop.AddItem();
             shop.ViewCart();
+
+            Console.WriteLine("Item added to cart");
         }
 
         [When(@"I try to apply the coupon code '(.*)'")]
@@ -45,6 +48,8 @@ namespace BDDProject.CouponSteps
 
             cart.InputCoupon(coupon);
             cart.ApplyCoupon();
+
+            Console.WriteLine("Coupon applied");
         }
 
         [Then(@"the total value should be correct")]
