@@ -46,6 +46,7 @@ namespace BDDProject.Hooks
             nav.LogOut();
 
             Console.WriteLine("Logged out successfully");
+            nav.TakeLogoutScreenshot();
 
             Thread.Sleep(3000); //To see the result
             _driver.Quit();

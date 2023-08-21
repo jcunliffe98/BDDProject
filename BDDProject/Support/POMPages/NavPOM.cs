@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using uk.co.nfocus.jack.cunliffe.ecommerceproject.Utilities;
 
 namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
 {
@@ -18,6 +19,7 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
 
         private IWebElement _myAccountButton => _driver.FindElement(By.CssSelector("#menu-item-46 > a"));
         private IWebElement _logOutButton => _driver.FindElement(By.CssSelector("#post-7 > div > div > nav > ul > li.woocommerce-MyAccount-navigation-link.woocommerce-MyAccount-navigation-link--customer-logout > a"));
+       private IWebElement _loginField => _driver.FindElement(By.CssSelector("#post-7"));
 
         public void NavigateToMyAccount()
         {
@@ -27,6 +29,10 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
         public void LogOut()
         {
             _logOutButton.Click();
+        }
+        public void TakeLogoutScreenshot()
+        {
+            StaticHelpers.TakeScreenshot(_driver, _loginField, "logout.png");
         }
     }
 }

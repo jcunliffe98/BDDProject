@@ -56,6 +56,9 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
             }
         }
         private IWebElement _proceedToCheckout => _driver.FindElement(By.CssSelector("#post-5 > div > div > div.cart-collaterals > div > div > a"));
+        private IWebElement _cart => _driver.FindElement(By.CssSelector("#post-5 > div > div > form"));
+        private IWebElement _couponConfirmation => _driver.FindElement(By.CssSelector("#post-5 > div > div > div.woocommerce-notices-wrapper > div"));
+        private IWebElement _cartTotals => _driver.FindElement(By.CssSelector("#post-5 > div > div > div.cart-collaterals > div"));
 
         public void InputCoupon(string coupon)
         {
@@ -73,22 +76,18 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
 
         public string ReturnCoupon()
         {
-            //_couponDiscountText = _driver.FindElement(By.CssSelector("#post-5 > div > div > div.cart-collaterals > div > table > tbody > tr.cart-discount.coupon-edgewords > td > span"));
             return _couponDiscountText.Text.ToString();
         }
         public string ReturnTotal()
         {
-            //_totalText = _driver.FindElement(By.CssSelector("#post-5 > div > div > div.cart-collaterals > div > table > tbody > tr.order-total > td > strong > span"));
             return _totalText.Text.ToString();
         }
         public string ReturnSubTotal()
         {
-            //_subTotalText = _driver.FindElement(By.CssSelector("#post-5 > div > div > div.cart-collaterals > div > table > tbody > tr.cart-subtotal > td > span"));
             return _subTotalText.Text.ToString();
         }
         public string ReturnShippingCost()
         {
-            //_shippingCostText = _driver.FindElement(By.CssSelector("#shipping_method > li > label > span"));
             return _shippingCostText.Text.ToString();
         }
 
@@ -106,6 +105,19 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
             actions.ScrollByAmount(0, -500);
             actions.Perform();
         }
+        public void TakeCartScreenshot()
+        {
+            StaticHelpers.TakeScreenshot(_driver, _cart, "cart.png");
+        }
+        public void TakeCouponScreenshot()
+        {
+            StaticHelpers.TakeScreenshot(_driver, _couponConfirmation, "coupon.png");
+        }
+        public void TakeCartTotalsScreenshot()
+        {
+            StaticHelpers.TakeScreenshot(_driver, _cartTotals, "cartTotals.png");
+        }
+
     }
 }
 

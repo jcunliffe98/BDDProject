@@ -22,9 +22,14 @@ namespace BDDProject.CouponSteps
         public void GivenIHaveLoggedIntoMyAccount(string username, string password)
         {
             _driver.Url = "https://www.edgewordstraining.co.uk/demo-site/my-account/";
+
             LoginPagePOM login = new LoginPagePOM(_driver);
+            AccountPagePOM account = new AccountPagePOM(_driver);
+
             login.Login(username, password);
+
             Console.WriteLine("Logged in successfully");
+            account.TakeLoginConfirmationScreenshot();
         }
 
         [Given(@"I add a hat to my basket")]
@@ -39,6 +44,9 @@ namespace BDDProject.CouponSteps
             shop.ViewCart();
 
             Console.WriteLine("Item added to cart");
+
+            CartPagePOM cart = new CartPagePOM(_driver);
+            cart.TakeCartScreenshot();
         }
 
         [When(@"I try to apply the coupon code '(.*)'")]
@@ -50,6 +58,7 @@ namespace BDDProject.CouponSteps
             cart.ApplyCoupon();
 
             Console.WriteLine("Coupon applied");
+            cart.TakeCouponScreenshot();
         }
 
         [Then(@"the total value should be correct")]
@@ -79,6 +88,8 @@ namespace BDDProject.CouponSteps
             expectedAmount = expectedAmount + shippingCostAmount;
 
             Assert.That(expectedAmount == totalAmount, Is.True, "Expected amount does not match total amount");
+
+            cart.TakeCartTotalsScreenshot();
 
         }
     }

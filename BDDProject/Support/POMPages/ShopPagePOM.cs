@@ -38,8 +38,6 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
             actions.MoveToElement(_addHatToCart);
             actions.Perform();
             _addHatToCart.Click();
-            //Thread.Sleep(1000);
-            //Crashes without the sleep, can't get explicit wait for viewcart working
         }
 
         public void ViewCart()
