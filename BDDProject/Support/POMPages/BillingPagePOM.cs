@@ -36,7 +36,7 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
                 return _driver.FindElement(By.CssSelector("#place_order"));
             }
         }
-    private IWebElement _billingInfo => _driver.FindElement(By.CssSelector("#customer_details > div.col-1 > div"));
+        private IWebElement _billingInfo => _driver.FindElement(By.CssSelector("#customer_details > div.col-1 > div"));
 
         public void FillBillingInfo(string firstName, string lastName, string address, string city, string postcode, string phoneNumber)
         {
@@ -56,7 +56,7 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
             _lastNameTextBox.SendKeys(lastName);
 
             var actions = new Actions(_driver);
-            actions.ScrollByAmount(0, 100);
+            actions.MoveToElement(_placeOrderTextBox);
             actions.Perform();
         }
 
@@ -73,10 +73,6 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
 
             _phoneTextBox.Clear();
             _phoneTextBox.SendKeys(phoneNumber);
-
-            var actions = new Actions(_driver);
-            actions.ScrollByAmount(0, 100);
-            actions.Perform();
         }
         public void PlaceOrder()
         {
