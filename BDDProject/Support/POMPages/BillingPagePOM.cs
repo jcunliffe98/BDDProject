@@ -28,8 +28,15 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
 
         private IWebElement _postcodeTextBox => _driver.FindElement(By.CssSelector("#billing_postcode"));
         private IWebElement _phoneTextBox => _driver.FindElement(By.CssSelector("#billing_phone"));
-        private IWebElement _placeOrderTextBox => _driver.FindElement(By.CssSelector("#place_order"));
-        private IWebElement _orderNumber => _driver.FindElement(By.CssSelector("#post-6 > div > div > div > ul > li.woocommerce-order-overview__order.order > strong"));
+        private IWebElement _placeOrderTextBox
+        {
+            get
+            {
+                StaticHelpers.WaitForElement(_driver, By.CssSelector("#place_order"), 5);
+                return _driver.FindElement(By.CssSelector("#place_order"));
+            }
+        }
+    private IWebElement _billingInfo => _driver.FindElement(By.CssSelector("#customer_details > div.col-1 > div"));
 
         public void FillBillingInfo(string firstName, string lastName, string address, string city, string postcode, string phoneNumber)
         {
@@ -74,6 +81,10 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
         public void PlaceOrder()
         {
             _placeOrderTextBox.Click();
+        }
+        public void TakeBillingScreenshot()
+        {
+            StaticHelpers.TakeScreenshot(_driver, _billingInfo, "billing.png");
         }
     }
 }

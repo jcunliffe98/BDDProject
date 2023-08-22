@@ -18,13 +18,15 @@ namespace BDDProject.CouponSteps
             _scenarioContext = scenarioContext;
             _driver = (IWebDriver)_scenarioContext["mydriver"];
         }
-        [Given(@"I login to my account using '(.*)' and '(.*)'")]
-        public void GivenIHaveLoggedIntoMyAccount(string username, string password)
+        [Given(@"I login to my account using '(.*)' and password")]
+        public void GivenIHaveLoggedIntoMyAccount(string username)
         {
             _driver.Url = "https://www.edgewordstraining.co.uk/demo-site/my-account/";
 
             LoginPagePOM login = new LoginPagePOM(_driver);
             AccountPagePOM account = new AccountPagePOM(_driver);
+
+            string password = TestContext.Parameters["password"];
 
             login.Login(username, password);
 
@@ -35,8 +37,8 @@ namespace BDDProject.CouponSteps
         [Given(@"I add a hat to my basket")]
         public void GivenIAddAHatToMyBasket()
         {
-            AccountPagePOM account = new AccountPagePOM(_driver);
-            account.SelectShop();
+            NavPOM nav = new NavPOM(_driver);
+            nav.NavigateToShop();
 
             ShopPagePOM shop = new ShopPagePOM(_driver);
             shop.DismissBanner();
