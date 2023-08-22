@@ -25,7 +25,8 @@ namespace BDDProject.PlaceOrderSteps
         [Given(@"I have logged in to my account using '(.*)' and password")]
         public void GivenIHaveLoggedInToMyAccountUsingAnd(string username)
         {
-            _driver.Url = "https://www.edgewordstraining.co.uk/demo-site/my-account/";
+            _driver.Url = TestContext.Parameters["url"];
+
             LoginPagePOM login = new LoginPagePOM(_driver);
             AccountPagePOM account = new AccountPagePOM(_driver);
 
