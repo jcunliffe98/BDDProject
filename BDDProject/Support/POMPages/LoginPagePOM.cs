@@ -29,7 +29,6 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
         }
 
         private IWebElement _submitButton => _driver.FindElement(By.Name("login"));
-        //Service methods
         public void SetUsername(string username)
         {
             _usernameField.Clear();
@@ -47,7 +46,6 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
             _submitButton.Click();
         }
 
-        //Higher level service methods
         public void Login(string username, string password)
         {
             SetUsername(username);

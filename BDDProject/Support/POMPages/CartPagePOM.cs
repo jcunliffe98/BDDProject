@@ -98,13 +98,6 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
             actions.Perform();
             _proceedToCheckout.Click();
         }
-
-        public void ScrollToTop()
-        {
-            var actions = new Actions(_driver);
-            actions.ScrollByAmount(0, -500);
-            actions.Perform();
-        }
         public void TakeCartScreenshot()
         {
             StaticHelpers.TakeScreenshot(_driver, _cart, "cart.png");

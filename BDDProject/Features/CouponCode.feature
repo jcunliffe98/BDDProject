@@ -1,6 +1,6 @@
 ﻿Feature: Coupon Codes
 
-A short summary of the feature
+Check that coupons properly apply
 
 @Coupon @TestCase1 @Tests
 

@@ -1,6 +1,6 @@
 ﻿Feature: Place Order
 
-A short summary of the feature
+Check that orders can be placed
 
 @PlaceOrder @TestCase2 @Tests
 Scenario: Place an order as a registered user

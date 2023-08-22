@@ -25,16 +25,16 @@ namespace BDDProject.PlaceOrderSteps
         [Given(@"I have logged in to my account using '(.*)' and password")]
         public void GivenIHaveLoggedInToMyAccountUsingAnd(string username)
         {
-            _driver.Url = TestContext.Parameters["url"];
+            _driver.Url = TestContext.Parameters["url"]; //Retrieve URL from runsettings
 
             LoginPagePOM login = new LoginPagePOM(_driver);
             AccountPagePOM account = new AccountPagePOM(_driver);
 
-            string password = TestContext.Parameters["password"];
+            string password = TestContext.Parameters["password"]; //Retrieve password from runsettings
             login.Login(username, password);
 
             Console.WriteLine("Logged in successfully");
-            account.TakeLoginConfirmationScreenshot();
+            account.TakeLoginConfirmationScreenshot(); //Take screenshot after logging in
         }
 
         [Given(@"I add a hat to my cart")]
@@ -51,7 +51,7 @@ namespace BDDProject.PlaceOrderSteps
             Console.WriteLine("Item added to cart");
 
             CartPagePOM cart = new CartPagePOM(_driver);
-            cart.TakeCartScreenshot();
+            cart.TakeCartScreenshot(); //Take screenshot of current cart
         }
 
         [When(@"I input my address")]
@@ -65,7 +65,7 @@ namespace BDDProject.PlaceOrderSteps
 
             Console.WriteLine("Address filled in");
 
-            billing.TakeBillingScreenshot();
+            billing.TakeBillingScreenshot(); //Take screenshot of filled in info
         }
 
         [When(@"I place the order")]
@@ -79,7 +79,7 @@ namespace BDDProject.PlaceOrderSteps
             Console.WriteLine("Order placed");
 
             OrderConfirmationPOM orderConfirmation = new OrderConfirmationPOM(_driver);
-            orderConfirmation.TakeOrderDetailsScreenshot();
+            orderConfirmation.TakeOrderDetailsScreenshot(); //Take screenshot of order details
         }
 
         [Then(@"the order is placed")]
@@ -89,17 +89,17 @@ namespace BDDProject.PlaceOrderSteps
             AccountPagePOM account = new AccountPagePOM(_driver);
             NavPOM navigation = new NavPOM(_driver);
 
-            orderConfirmation.TakeOrderNumberScreenshot();
-            string orderNumber = orderConfirmation.RetrieveOrderNumber();
-            orderNumber = "#" + orderNumber;
+            orderConfirmation.TakeOrderNumberScreenshot(); //Take screenshot of order number
+            string orderNumber = orderConfirmation.RetrieveOrderNumber(); //Get order number
+            orderNumber = "#" + orderNumber; //Append # to start of order number
             navigation.NavigateToMyAccount();
             account.SelectOrders();
-            string orderHistoryNumber = account.ReturnOrderHistoryNumber();
+            string orderHistoryNumber = account.ReturnOrderHistoryNumber(); //Return order number value in account history
 
-            Assert.That(orderNumber, Is.EqualTo(orderHistoryNumber), "Latest order history number does not match just placed order");
+            Assert.That(orderNumber, Is.EqualTo(orderHistoryNumber), "Latest order history number does not match just placed order"); //Check if order number from history matches order number from earlier
 
             Console.WriteLine("Latest order history number matches just placed order");
-            account.TakeMostRecentOrderScreenshot();
+            account.TakeMostRecentOrderScreenshot(); //Take screenshot of most recent order
 
         }
     }

@@ -21,17 +21,17 @@ namespace BDDProject.CouponSteps
         [Given(@"I login to my account using '(.*)' and password")]
         public void GivenIHaveLoggedIntoMyAccount(string username)
         {
-            _driver.Url = TestContext.Parameters["url"];
+            _driver.Url = TestContext.Parameters["url"]; //Retrieve URL from runsettings
 
             LoginPagePOM login = new LoginPagePOM(_driver);
             AccountPagePOM account = new AccountPagePOM(_driver);
 
-            string password = TestContext.Parameters["password"];
+            string password = TestContext.Parameters["password"]; //Retrieve password from runsettings
 
             login.Login(username, password);
 
             Console.WriteLine("Logged in successfully");
-            account.TakeLoginConfirmationScreenshot();
+            account.TakeLoginConfirmationScreenshot(); //Take screenshot after logging in
         }
 
         [Given(@"I add a hat to my basket")]
@@ -48,7 +48,7 @@ namespace BDDProject.CouponSteps
             Console.WriteLine("Item added to cart");
 
             CartPagePOM cart = new CartPagePOM(_driver);
-            cart.TakeCartScreenshot();
+            cart.TakeCartScreenshot(); //Take screenshot of current cart
         }
 
         [When(@"I try to apply the coupon code '(.*)'")]
@@ -60,7 +60,7 @@ namespace BDDProject.CouponSteps
             cart.ApplyCoupon();
 
             Console.WriteLine("Coupon applied");
-            cart.TakeCouponScreenshot();
+            cart.TakeCouponScreenshot(); //Take screenshot of coupon being applied
         }
 
         [Then(@"the total value should be correct")]
@@ -68,30 +68,31 @@ namespace BDDProject.CouponSteps
         {
             CartPagePOM cart = new CartPagePOM(_driver);
 
-            string totalString = cart.ReturnTotal();
-            string subTotalString = cart.ReturnSubTotal();
-            string couponString = cart.ReturnCoupon();
-            string shippingCostString = cart.ReturnShippingCost();
+            string totalString = cart.ReturnTotal(); //Gets total after coupon is applied
+            string subTotalString = cart.ReturnSubTotal(); //Gets total before coupon is applied
+            string couponString = cart.ReturnCoupon(); //Gets discount amount from coupon being applied
+            string shippingCostString = cart.ReturnShippingCost(); //Gets shipping cost
 
             NumberFormatInfo FormatInfo = new NumberFormatInfo();
-            FormatInfo.CurrencySymbol = "£";
+            FormatInfo.CurrencySymbol = "£"; //Settings to convert to decimal from a string containing a currency
 
+            //Convert string values to decimals
             decimal totalAmount = decimal.Parse(totalString, NumberStyles.Currency, FormatInfo);
             decimal subTotalAmount = decimal.Parse(subTotalString, NumberStyles.Currency, FormatInfo);
             decimal couponAmount = decimal.Parse(couponString, NumberStyles.Currency, FormatInfo);
             decimal shippingCostAmount = decimal.Parse(shippingCostString, NumberStyles.Currency, FormatInfo);
 
-            int couponDiscount = 15;
+            int couponDiscount = 15; //Discount amount from coupon as percentage
 
 
-            Assert.That(couponAmount / subTotalAmount * 100 == couponDiscount, Is.True, "Coupon discount is incorrect");
+            Assert.That(couponAmount / subTotalAmount * 100 == couponDiscount, Is.True, "Coupon discount is incorrect"); //Check coupon applies correct discount
 
             decimal expectedAmount = subTotalAmount - couponAmount;
             expectedAmount = expectedAmount + shippingCostAmount;
 
-            Assert.That(expectedAmount == totalAmount, Is.True, "Expected amount does not match total amount");
+            Assert.That(expectedAmount == totalAmount, Is.True, "Expected amount does not match total amount"); //Check that expected amount is equal to actual amount
 
-            cart.TakeCartTotalsScreenshot();
+            cart.TakeCartTotalsScreenshot(); //Take screenshot of cart values
 
         }
     }
