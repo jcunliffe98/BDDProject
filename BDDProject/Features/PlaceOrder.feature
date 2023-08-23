@@ -8,4 +8,4 @@ Scenario: Place an order as a registered user
 	And I add a hat to my cart
 	When I input my address
 	And I place the order
-	Then the order is placed
+	Then the order is confirmed

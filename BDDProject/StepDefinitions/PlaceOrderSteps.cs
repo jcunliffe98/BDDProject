@@ -82,8 +82,8 @@ namespace BDDProject.PlaceOrderSteps
             orderConfirmation.TakeOrderDetailsScreenshot(); //Take screenshot of order details
         }
 
-        [Then(@"the order is placed")]
-        public void ThenTheOrderIsPlaced()
+        [Then(@"the order is confirmed")]
+        public void ThenTheOrderIsConfirmed()
         {
             OrderConfirmationPOM orderConfirmation = new OrderConfirmationPOM(_driver);
             AccountPagePOM account = new AccountPagePOM(_driver);
