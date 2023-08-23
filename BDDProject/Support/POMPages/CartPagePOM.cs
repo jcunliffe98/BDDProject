@@ -80,6 +80,9 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
         }
         public string ReturnTotal()
         {
+            var actions = new Actions(_driver);
+            actions.MoveToElement(_totalText);
+            actions.Perform();
             return _totalText.Text.ToString();
         }
         public string ReturnSubTotal()

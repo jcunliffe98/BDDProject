@@ -37,15 +37,15 @@ namespace BDDProject.PlaceOrderSteps
             account.TakeLoginConfirmationScreenshot(); //Take screenshot after logging in
         }
 
-        [Given(@"I add a hat to my cart")]
-        public void GivenIAddAHatToMyCart()
+        [Given(@"I add a '(.*)' to my cart")]
+        public void GivenIAddAItemToMyCart(string item)
         {
             NavPOM nav = new NavPOM(_driver);
             nav.NavigateToShop();
 
             ShopPagePOM shop = new ShopPagePOM(_driver);
             shop.DismissBanner();
-            shop.AddItem();
+            shop.AddItem(item);
             shop.ViewCart();
 
             Console.WriteLine("Item added to cart");

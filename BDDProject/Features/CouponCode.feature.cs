@@ -21,12 +21,14 @@ namespace BDDProject.Features
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Coupon Codes")]
+    [NUnit.Framework.CategoryAttribute("Coupon")]
     public partial class CouponCodesFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = ((string[])(null));
+        private string[] _featureTags = new string[] {
+                "Coupon"};
         
 #line 1 "CouponCode.feature"
 #line hidden
@@ -35,7 +37,8 @@ namespace BDDProject.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Coupon Codes", "Check that coupons properly apply", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Coupon Codes", "Check that coupons properly apply", ProgrammingLanguage.CSharp, new string[] {
+                        "Coupon"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -75,16 +78,22 @@ namespace BDDProject.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Buy an item of clothing using a coupon code as a registered user")]
-        [NUnit.Framework.CategoryAttribute("Coupon")]
         [NUnit.Framework.CategoryAttribute("TestCase1")]
         [NUnit.Framework.CategoryAttribute("Tests")]
-        public virtual void BuyAnItemOfClothingUsingACouponCodeAsARegisteredUser()
+        [NUnit.Framework.TestCaseAttribute("hat", null)]
+        [NUnit.Framework.TestCaseAttribute("belt", null)]
+        public virtual void BuyAnItemOfClothingUsingACouponCodeAsARegisteredUser(string item, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
-                    "Coupon",
+            string[] @__tags = new string[] {
                     "TestCase1",
                     "Tests"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("item", item);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Buy an item of clothing using a coupon code as a registered user", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
@@ -110,7 +119,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("I login to my account using \'jack.cunliffe@nfocus.co.uk\' and password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
- testRunner.And("I add a hat to my basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I add a \'{0}\' to my basket", item), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
  testRunner.When("I try to apply the coupon code \'edgewords\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

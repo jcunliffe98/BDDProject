@@ -78,13 +78,21 @@ namespace BDDProject.Features
         [NUnit.Framework.CategoryAttribute("PlaceOrder")]
         [NUnit.Framework.CategoryAttribute("TestCase2")]
         [NUnit.Framework.CategoryAttribute("Tests")]
-        public virtual void PlaceAnOrderAsARegisteredUser()
+        [NUnit.Framework.TestCaseAttribute("hat", null)]
+        [NUnit.Framework.TestCaseAttribute("belt", null)]
+        public virtual void PlaceAnOrderAsARegisteredUser(string item, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "PlaceOrder",
                     "TestCase2",
                     "Tests"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("item", item);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Place an order as a registered user", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
@@ -110,7 +118,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("I have logged in to my account using \'jack.cunliffe@nfocus.co.uk\' and password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.And("I add a hat to my cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I add a \'{0}\' to my cart", item), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
  testRunner.When("I input my address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

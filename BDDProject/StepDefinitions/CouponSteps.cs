@@ -34,15 +34,15 @@ namespace BDDProject.CouponSteps
             account.TakeLoginConfirmationScreenshot(); //Take screenshot after logging in
         }
 
-        [Given(@"I add a hat to my basket")]
-        public void GivenIAddAHatToMyBasket()
+        [Given(@"I add a '(.*)' to my basket")]
+        public void GivenIAddAItemToMyBasket(string item)
         {
             NavPOM nav = new NavPOM(_driver);
             nav.NavigateToShop();
 
             ShopPagePOM shop = new ShopPagePOM(_driver);
             shop.DismissBanner();
-            shop.AddItem();
+            shop.AddItem(item);
             shop.ViewCart();
 
             Console.WriteLine("Item added to cart");
@@ -84,15 +84,17 @@ namespace BDDProject.CouponSteps
 
             int couponDiscount = 15; //Discount amount from coupon as percentage
 
+            cart.TakeCartTotalsScreenshot(); //Take screenshot of cart values
 
-            Assert.That(couponAmount / subTotalAmount * 100 == couponDiscount, Is.True, "Coupon discount is incorrect"); //Check coupon applies correct discount
+            decimal expectedDiscount = couponAmount / subTotalAmount * 100;
+
+            Assert.That(couponAmount / subTotalAmount * 100 == couponDiscount, Is.True, "Coupon was expected to apply a " + couponDiscount + "% discount but instead applied a " + expectedDiscount + "% discount"); //Check coupon applies correct discount
 
             decimal expectedAmount = subTotalAmount - couponAmount;
             expectedAmount = expectedAmount + shippingCostAmount;
 
-            Assert.That(expectedAmount == totalAmount, Is.True, "Expected amount does not match total amount"); //Check that expected amount is equal to actual amount
+            Assert.That(expectedAmount == totalAmount, Is.True, "Expected amount was expected to be " + expectedAmount + " but was " + totalAmount); //Check that expected amount is equal to actual amount
 
-            cart.TakeCartTotalsScreenshot(); //Take screenshot of cart values
 
         }
     }

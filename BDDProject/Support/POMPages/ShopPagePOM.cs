@@ -20,7 +20,8 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
         }
 
         //Locators
-        private IWebElement _addHatToCart => _driver.FindElement(By.CssSelector("[class='product type-product post-27 status-publish first instock product_cat-accessories has-post-thumbnail sale shipping-taxable purchasable product-type-simple'] [data-product_id]"));
+        private IWebElement _addHatToCart => _driver.FindElement(By.CssSelector("#main > ul > li.product.type-product.post-27.status-publish.first.instock.product_cat-accessories.has-post-thumbnail.sale.shipping-taxable.purchasable.product-type-simple > a.button.product_type_simple.add_to_cart_button.ajax_add_to_cart"));
+        private IWebElement _addBeltToCart => _driver.FindElement(By.CssSelector("#main > ul > li.product.type-product.post-28.status-publish.instock.product_cat-accessories.has-post-thumbnail.sale.shipping-taxable.purchasable.product-type-simple > a.button.product_type_simple.add_to_cart_button.ajax_add_to_cart"));
         private IWebElement _viewCart
         {
             get
@@ -32,12 +33,21 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
 
         private IWebElement _demoBanner => _driver.FindElement(By.CssSelector("body > p > a"));
 
-        public void AddItem()
+        public void AddItem(string item)
         {
             var actions = new Actions(_driver);
-            actions.MoveToElement(_addHatToCart);
-            actions.Perform();
-            _addHatToCart.Click();
+            if (item == "hat")
+            {
+                actions.MoveToElement(_addHatToCart);
+                actions.Perform();
+                _addHatToCart.Click();
+            }
+            else if(item == "belt")
+            {
+                actions.MoveToElement(_addBeltToCart);
+                actions.Perform();
+                _addBeltToCart.Click();
+            }
         }
 
         public void ViewCart()
