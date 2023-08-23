@@ -33,7 +33,7 @@ namespace BDDProject.Hooks
             _driver = new ChromeDriver();
             _driver.Manage().Window.Maximize();
             _scenarioContext["mydriver"] = _driver;
-            
+
         }
 
 

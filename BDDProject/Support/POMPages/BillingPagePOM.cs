@@ -54,10 +54,6 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
 
             _lastNameTextBox.Clear();
             _lastNameTextBox.SendKeys(lastName);
-
-            var actions = new Actions(_driver);
-            actions.MoveToElement(_placeOrderTextBox);
-            actions.Perform();
         }
 
         public void FillAddress(string address, string city, string postcode, string phoneNumber)

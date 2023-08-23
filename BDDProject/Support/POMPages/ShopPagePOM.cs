@@ -20,7 +20,7 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
         }
 
         //Locators
-        private IWebElement _addHatToCart => _driver.FindElement(By.CssSelector("#main > ul > li.product.type-product.post-27.status-publish.first.instock.product_cat-accessories.has-post-thumbnail.sale.shipping-taxable.purchasable.product-type-simple > a.button.product_type_simple.add_to_cart_button.ajax_add_to_cart"));
+        private IWebElement _addHatToCart => _driver.FindElement(By.CssSelector("[class='product type-product post-27 status-publish first instock product_cat-accessories has-post-thumbnail sale shipping-taxable purchasable product-type-simple'] [data-product_id]"));
         private IWebElement _viewCart
         {
             get
