@@ -23,8 +23,6 @@ namespace BDDProject.LoginSteps
         [Given(@"I have logged in to my account using '(.*)' and password")]
         public void GivenIHaveLoggedInToMyAccountUsingAnd(string username)
         {
-            _driver.Url = TestContext.Parameters["url"]; //Retrieve URL from runsettings
-
             LoginPagePOM login = new LoginPagePOM(_driver);
             AccountPagePOM account = new AccountPagePOM(_driver);
 
@@ -42,7 +40,6 @@ namespace BDDProject.LoginSteps
             nav.NavigateToShop();
 
             ShopPagePOM shop = new ShopPagePOM(_driver);
-            shop.DismissBanner();
             shop.AddItem(item);
             shop.ViewCart();
 

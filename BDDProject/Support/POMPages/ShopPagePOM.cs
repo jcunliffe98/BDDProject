@@ -31,8 +31,6 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
             }
         }
 
-        private IWebElement _demoBanner => _driver.FindElement(By.CssSelector("body > p > a"));
-
         public void AddItem(string item)
         {
             var actions = new Actions(_driver);
@@ -53,11 +51,6 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
         public void ViewCart()
         {
             _viewCart.Click();
-        }
-
-        public void DismissBanner()
-        {
-            _demoBanner.Click();
         }
     }
 }

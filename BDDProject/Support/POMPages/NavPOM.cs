@@ -22,6 +22,14 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
         private IWebElement _logOutButton => _driver.FindElement(By.LinkText("Logout"));
         private IWebElement _loginField => _driver.FindElement(By.CssSelector("#post-7"));
         private IWebElement _shopButton => _driver.FindElement(By.LinkText("Shop"));
+        private IWebElement _demoBanner
+        {
+            get
+            {
+                StaticHelpers.WaitForElement(_driver, By.CssSelector("body > p > a"), 5);
+                return _driver.FindElement(By.CssSelector("body > p > a"));
+            }
+        }
 
         public void NavigateToMyAccount()
         {
@@ -39,6 +47,10 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
         public void TakeLogoutScreenshot()
         {
             StaticHelpers.TakeScreenshot(_driver, _loginField, "logout.png");
+        }
+        public void DismissBanner()
+        {
+            _demoBanner.Click();
         }
     }
 }
