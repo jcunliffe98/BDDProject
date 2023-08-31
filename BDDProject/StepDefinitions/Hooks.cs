@@ -27,7 +27,7 @@ namespace BDDProject.Hooks
             _scenarioContext = scenarioContext;
         }
 
-        [Before("@Tests")]
+        [Before]
         public void SetUp()
         {
             _driver = new ChromeDriver();
@@ -37,7 +37,7 @@ namespace BDDProject.Hooks
         }
 
 
-        [After("@Tests")]
+        [After]
         public void TearDown()
         {
             NavPOM nav = new NavPOM(_driver);

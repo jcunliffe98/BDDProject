@@ -22,37 +22,6 @@ namespace BDDProject.PlaceOrderSteps
             _scenarioContext = scenarioContext;
             _driver = (IWebDriver)_scenarioContext["mydriver"];
         }
-        [Given(@"I have logged in to my account using '(.*)' and password")]
-        public void GivenIHaveLoggedInToMyAccountUsingAnd(string username)
-        {
-            _driver.Url = TestContext.Parameters["url"]; //Retrieve URL from runsettings
-
-            LoginPagePOM login = new LoginPagePOM(_driver);
-            AccountPagePOM account = new AccountPagePOM(_driver);
-
-            string password = TestContext.Parameters["password"]; //Retrieve password from runsettings
-            login.Login(username, password);
-
-            Console.WriteLine("Logged in successfully");
-            account.TakeLoginConfirmationScreenshot(); //Take screenshot after logging in
-        }
-
-        [Given(@"I add a '(.*)' to my cart")]
-        public void GivenIAddAItemToMyCart(string item)
-        {
-            NavPOM nav = new NavPOM(_driver);
-            nav.NavigateToShop();
-
-            ShopPagePOM shop = new ShopPagePOM(_driver);
-            shop.DismissBanner();
-            shop.AddItem(item);
-            shop.ViewCart();
-
-            Console.WriteLine("Item added to cart");
-
-            CartPagePOM cart = new CartPagePOM(_driver);
-            cart.TakeCartScreenshot(); //Take screenshot of current cart
-        }
 
         [When(@"I input my address")]
         public void WhenIInputMyAddress()

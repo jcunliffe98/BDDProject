@@ -18,38 +18,6 @@ namespace BDDProject.CouponSteps
             _scenarioContext = scenarioContext;
             _driver = (IWebDriver)_scenarioContext["mydriver"];
         }
-        [Given(@"I login to my account using '(.*)' and password")]
-        public void GivenIHaveLoggedIntoMyAccount(string username)
-        {
-            _driver.Url = TestContext.Parameters["url"]; //Retrieve URL from runsettings
-
-            LoginPagePOM login = new LoginPagePOM(_driver);
-            AccountPagePOM account = new AccountPagePOM(_driver);
-
-            string password = TestContext.Parameters["password"]; //Retrieve password from runsettings
-
-            login.Login(username, password);
-
-            Console.WriteLine("Logged in successfully");
-            account.TakeLoginConfirmationScreenshot(); //Take screenshot after logging in
-        }
-
-        [Given(@"I add a '(.*)' to my basket")]
-        public void GivenIAddAItemToMyBasket(string item)
-        {
-            NavPOM nav = new NavPOM(_driver);
-            nav.NavigateToShop();
-
-            ShopPagePOM shop = new ShopPagePOM(_driver);
-            shop.DismissBanner();
-            shop.AddItem(item);
-            shop.ViewCart();
-
-            Console.WriteLine("Item added to cart");
-
-            CartPagePOM cart = new CartPagePOM(_driver);
-            cart.TakeCartScreenshot(); //Take screenshot of current cart
-        }
 
         [When(@"I try to apply the coupon code '(.*)'")]
         public void WhenITryToApplyTheCouponCodeEdgewords(string coupon)
@@ -63,8 +31,8 @@ namespace BDDProject.CouponSteps
             cart.TakeCouponScreenshot(); //Take screenshot of coupon being applied
         }
 
-        [Then(@"the total value should be correct")]
-        public void ThenTheTotalValueShouldBeCorrect_()
+        [Then(@"the coupon should apply a '(.*)' discount")]
+        public void ThenTheTotalValueShouldBeCorrect_(string expectDiscount)
         {
             CartPagePOM cart = new CartPagePOM(_driver);
 
