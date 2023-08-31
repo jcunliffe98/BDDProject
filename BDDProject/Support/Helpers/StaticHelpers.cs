@@ -17,7 +17,8 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.Utilities
         {
             var ssdriver = element as ITakesScreenshot;
             var screenshot = ssdriver.GetScreenshot();
-            screenshot.SaveAsFile(fileName);
+            var timestamp = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
+            screenshot.SaveAsFile("[" + timestamp + "] " + fileName);
             TestContext.AddTestAttachment(fileName);
         }
     }
