@@ -32,7 +32,7 @@ namespace BDDProject.CouponSteps
         }
 
         [Then(@"the coupon should apply a '(.*)' discount")]
-        public void ThenTheTotalValueShouldBeCorrect_(string expectDiscount)
+        public void ThenTheTotalValueShouldBeCorrect_(string inputCoupon)
         {
             CartPagePOM cart = new CartPagePOM(_driver);
 
@@ -50,13 +50,14 @@ namespace BDDProject.CouponSteps
             decimal couponAmount = decimal.Parse(couponString, NumberStyles.Currency, FormatInfo);
             decimal shippingCostAmount = decimal.Parse(shippingCostString, NumberStyles.Currency, FormatInfo);
 
-            int couponDiscount = 15; //Discount amount from coupon as percentage
+            inputCoupon = inputCoupon.Trim('%');
+            int coupon = int.Parse(inputCoupon); //Discount amount from coupon as percentage
 
             cart.TakeCartTotalsScreenshot(); //Take screenshot of cart values
 
             decimal expectedDiscount = couponAmount / subTotalAmount * 100;
 
-            Assert.That(couponAmount / subTotalAmount * 100 == couponDiscount, Is.True, "Coupon was expected to apply a " + couponDiscount + "% discount but instead applied a " + expectedDiscount + "% discount"); //Check coupon applies correct discount
+            Assert.That(couponAmount / subTotalAmount * 100 == coupon, Is.True, "Coupon was expected to apply a " + coupon + "% discount but instead applied a " + expectedDiscount + "% discount"); //Check coupon applies correct discount
 
             decimal expectedAmount = subTotalAmount - couponAmount;
             expectedAmount = expectedAmount + shippingCostAmount;
