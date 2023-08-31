@@ -23,11 +23,11 @@ namespace BDDProject.CouponSteps
         public void WhenITryToApplyTheCouponCodeEdgewords(string coupon)
         {
             CartPagePOM cart = new CartPagePOM(_driver);
-
             cart.InputCoupon(coupon);
             cart.ApplyCoupon();
 
             Console.WriteLine("Coupon applied");
+
             cart.TakeCouponScreenshot(); //Take screenshot of coupon being applied
         }
 

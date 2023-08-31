@@ -55,14 +55,17 @@ namespace BDDProject.PlaceOrderSteps
         public void ThenTheOrderIsConfirmed()
         {
             OrderConfirmationPOM orderConfirmation = new OrderConfirmationPOM(_driver);
-            AccountPagePOM account = new AccountPagePOM(_driver);
-            NavPOM navigation = new NavPOM(_driver);
-
+            
             orderConfirmation.TakeOrderNumberScreenshot(); //Take screenshot of order number
             string orderNumber = orderConfirmation.RetrieveOrderNumber(); //Get order number
             orderNumber = "#" + orderNumber; //Append # to start of order number
+
+            NavPOM navigation = new NavPOM(_driver);
             navigation.NavigateToMyAccount();
+
+            AccountPagePOM account = new AccountPagePOM(_driver);
             account.SelectOrders();
+
             string orderHistoryNumber = account.ReturnOrderHistoryNumber(); //Return order number value in account history
 
             Assert.That(orderNumber, Is.EqualTo(orderHistoryNumber), "Latest order history number does not match just placed order"); //Check if order number from history matches order number from earlier

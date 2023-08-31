@@ -23,13 +23,14 @@ namespace BDDProject.LoginSteps
         [Given(@"I have logged in to my account using '(.*)' and password")]
         public void GivenIHaveLoggedInToMyAccountUsingAnd(string username)
         {
-            LoginPagePOM login = new LoginPagePOM(_driver);
-            AccountPagePOM account = new AccountPagePOM(_driver);
-
             string password = TestContext.Parameters["password"]; //Retrieve password from runsettings
+
+            LoginPagePOM login = new LoginPagePOM(_driver);
             login.Login(username, password);
 
             Console.WriteLine("Logged in successfully");
+
+            AccountPagePOM account = new AccountPagePOM(_driver);
             account.TakeLoginConfirmationScreenshot(); //Take screenshot after logging in
         }
 
