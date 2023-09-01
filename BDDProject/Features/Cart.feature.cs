@@ -84,7 +84,7 @@ namespace BDDProject.Features
  testRunner.Given("I have logged in to my account using \'jack.cunliffe@nfocus.co.uk\' and password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 6
- testRunner.And("I add a \'hat\' to my cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I add a \'Belt\' to my cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
         

@@ -13,15 +13,16 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
     internal class ShopPagePOM
     {
         private IWebDriver _driver;
+        private string _item;
 
-        public ShopPagePOM(IWebDriver driver)
+        public ShopPagePOM(IWebDriver driver, string item)
         {
             _driver = driver;
+            _item = item;
         }
 
         //Locators
-        private IWebElement _addHatToCart => _driver.FindElement(By.CssSelector("#main > ul > li.product.type-product.post-27.status-publish.first.instock.product_cat-accessories.has-post-thumbnail.sale.shipping-taxable.purchasable.product-type-simple > a.button.product_type_simple.add_to_cart_button.ajax_add_to_cart"));
-        private IWebElement _addBeltToCart => _driver.FindElement(By.CssSelector("#main > ul > li.product.type-product.post-28.status-publish.instock.product_cat-accessories.has-post-thumbnail.sale.shipping-taxable.purchasable.product-type-simple > a.button.product_type_simple.add_to_cart_button.ajax_add_to_cart"));
+        private IWebElement _addItemToCart => _driver.FindElement(By.CssSelector("[aria-label='Add “" + _item + "” to your cart']"));
         private IWebElement _viewCart
         {
             get
@@ -34,18 +35,11 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
         public void AddItem(string item)
         {
             var actions = new Actions(_driver);
-            if (item == "hat")
-            {
-                actions.MoveToElement(_addHatToCart);
-                actions.Perform();
-                _addHatToCart.Click();
-            }
-            else if(item == "belt")
-            {
-                actions.MoveToElement(_addBeltToCart);
-                actions.Perform();
-                _addBeltToCart.Click();
-            }
+
+            actions.MoveToElement(_addItemToCart);
+            actions.Perform();
+            _addItemToCart.Click();
+
         }
 
         public void ViewCart()
