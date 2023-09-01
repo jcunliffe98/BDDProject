@@ -10,6 +10,9 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages;
+using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Remote;
 
 [assembly: Parallelizable(ParallelScope.Fixtures)]
 [assembly: LevelOfParallelism(8)]
@@ -30,7 +33,32 @@ namespace BDDProject.Hooks
         [Before]
         public void SetUp()
         {
-            _driver = new ChromeDriver();
+            string Browser = Environment.GetEnvironmentVariable("BROWSER");
+
+            switch (Browser)
+            {
+                case "firefox":
+                    _driver = new FirefoxDriver();
+                    break;
+                case "chrome":
+                    _driver = new ChromeDriver();
+                    break;
+                case "edge":
+                    _driver = new EdgeDriver();
+                    break;
+                case "ie":
+                    _driver = new InternetExplorerDriver();
+                    break;
+                case "remotechrome":
+                    ChromeOptions options = new ChromeOptions();
+                    _driver = new RemoteWebDriver(new Uri("http://172.30.190.244:4444/wd/hub"), options);
+                    break;
+                default:
+                    Console.WriteLine("No browser set - launching chrome");
+                    _driver = new ChromeDriver();
+                    break;
+            };
+
             _driver.Manage().Window.Maximize();
             _scenarioContext["mydriver"] = _driver;
             _driver.Url = TestContext.Parameters["url"]; //Retrieve URL from runsettings
