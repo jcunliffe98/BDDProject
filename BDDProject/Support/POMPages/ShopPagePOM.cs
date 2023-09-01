@@ -32,7 +32,7 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
             }
         }
 
-        public void AddItem(string item)
+        public void AddItem()
         {
             var actions = new Actions(_driver);
 
