@@ -73,6 +73,7 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
         public void PlaceOrder()
         {
             _placeOrderTextBox.Click();
+            StaticHelpers.WaitForElement(_driver, By.CssSelector("#post-6 > div > div > div > ul > li.woocommerce-order-overview__date.date > strong"), 3);
         }
         public void TakeBillingScreenshot()
         {

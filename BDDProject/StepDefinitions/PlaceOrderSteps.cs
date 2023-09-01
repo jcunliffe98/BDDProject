@@ -44,8 +44,6 @@ namespace BDDProject.PlaceOrderSteps
             BillingPagePOM billing = new BillingPagePOM(_driver);
             billing.PlaceOrder();
 
-            StaticHelpers.WaitForElement(_driver, By.CssSelector("#post-6 > div > div > div > ul > li.woocommerce-order-overview__date.date > strong"), 3);
-
             Console.WriteLine("Order placed");
 
             OrderConfirmationPOM orderConfirmation = new OrderConfirmationPOM(_driver);
@@ -69,10 +67,16 @@ namespace BDDProject.PlaceOrderSteps
 
             string orderHistoryNumber = account.ReturnOrderHistoryNumber(); //Return order number value in account history
 
-            Assert.That(orderNumber, Is.EqualTo(orderHistoryNumber), "Latest order history number does not match just placed order"); //Check if order number from history matches order number from earlier
-
+            try
+            {
+                Assert.That(orderNumber, Is.EqualTo(orderHistoryNumber), "Latest order history number does not match just placed order"); //Check if order number from history matches order number from earlier
+            }
+            catch (AssertionException e)
+            {
+                account.TakeMostRecentOrderScreenshot(); //Take screenshot of most recent order
+                throw;
+            }
             Console.WriteLine("Latest order history number matches just placed order");
-            account.TakeMostRecentOrderScreenshot(); //Take screenshot of most recent order
 
         }
     }
