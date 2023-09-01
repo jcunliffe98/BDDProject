@@ -76,22 +76,20 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
 
         public string ReturnCoupon()
         {
-            return _couponDiscountText.Text.ToString();
+            return _couponDiscountText.Text;
         }
         public string ReturnTotal()
         {
             var actions = new Actions(_driver);
-            actions.MoveToElement(_totalText);
-            actions.Perform();
-            return _totalText.Text.ToString();
+            return _totalText.Text;
         }
         public string ReturnSubTotal()
         {
-            return _subTotalText.Text.ToString();
+            return _subTotalText.Text;
         }
         public string ReturnShippingCost()
         {
-            return _shippingCostText.Text.ToString();
+            return _shippingCostText.Text;
         }
 
         public void ProceedToCheckout()
