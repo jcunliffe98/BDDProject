@@ -22,6 +22,8 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
         private IWebElement _recentOrderNumber => _driver.FindElement(By.CssSelector("#post-7 > div > div > div > table > tbody > tr:nth-child(1) > td.woocommerce-orders-table__cell.woocommerce-orders-table__cell-order-number > a"));
         private IWebElement _loginConfirmation => _driver.FindElement(By.CssSelector("#post-7"));
         private IWebElement _mostRecentOrder => _driver.FindElement(By.CssSelector("tbody > tr:nth-of-type(1)"));
+        private IWebElement _logOutButton => _driver.FindElement(By.LinkText("Logout"));
+        private IWebElement _loginField => _driver.FindElement(By.CssSelector("#post-7"));
 
         public void SelectOrders()
         {
@@ -39,6 +41,14 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
         public void TakeMostRecentOrderScreenshot()
         {
             StaticHelpers.TakeScreenshot(_driver, _mostRecentOrder, "mostRecentOrder.png");
+        }
+        public void LogOut()
+        {
+            _logOutButton.Click();
+        }
+        public void TakeLogoutScreenshot()
+        {
+            StaticHelpers.TakeScreenshot(_driver, _loginField, "logout.png");
         }
     }
 }

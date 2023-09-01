@@ -74,10 +74,12 @@ namespace BDDProject.Hooks
             NavPOM nav = new NavPOM(_driver);
 
             nav.NavigateToMyAccount();
-            nav.LogOut();
+
+            AccountPagePOM account = new AccountPagePOM(_driver);
+            account.LogOut();
 
             Console.WriteLine("Logged out successfully");
-            nav.TakeLogoutScreenshot();
+            account.TakeLogoutScreenshot();
 
             Thread.Sleep(3000); //To see the result
             _driver.Quit();

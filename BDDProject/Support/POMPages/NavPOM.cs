@@ -19,8 +19,6 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
 
         //Locators
         private IWebElement _myAccountButton => _driver.FindElement(By.CssSelector("#menu-item-46 > a"));
-        private IWebElement _logOutButton => _driver.FindElement(By.LinkText("Logout"));
-        private IWebElement _loginField => _driver.FindElement(By.CssSelector("#post-7"));
         private IWebElement _shopButton => _driver.FindElement(By.LinkText("Shop"));
         private IWebElement _demoBanner
         {
@@ -38,15 +36,6 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
         public void NavigateToShop()
         {
             _shopButton.Click();
-        }
-
-        public void LogOut()
-        {
-            _logOutButton.Click();
-        }
-        public void TakeLogoutScreenshot()
-        {
-            StaticHelpers.TakeScreenshot(_driver, _loginField, "logout.png");
         }
         public void DismissBanner()
         {
