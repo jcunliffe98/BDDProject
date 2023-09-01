@@ -12,6 +12,6 @@ Scenario: Apply a valid coupon code to a cart as a registered user
 
 @TestCase2 @Tests
 Scenario: Place an order as a registered user
-	When I input my address
+	When I input 'Jack, Cunliffe,24 London Street,London,SW1A 0AA,020 7219 4272' as my address
 	And I place the order
 	Then the order is confirmed

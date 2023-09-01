@@ -167,7 +167,8 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 15
- testRunner.When("I input my address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I input \'Jack, Cunliffe,24 London Street,London,SW1A 0AA,020 7219 4272\' as my add" +
+                        "ress", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 16
  testRunner.And("I place the order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

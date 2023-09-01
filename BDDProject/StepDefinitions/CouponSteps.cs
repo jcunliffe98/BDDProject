@@ -20,7 +20,7 @@ namespace BDDProject.CouponSteps
         }
 
         [When(@"I try to apply the coupon code '(.*)'")]
-        public void WhenITryToApplyTheCouponCodeEdgewords(string coupon)
+        public void WhenITryToApplyTheCouponCode(string coupon)
         {
             CartPagePOM cart = new CartPagePOM(_driver);
             cart.InputCoupon(coupon);
@@ -32,7 +32,7 @@ namespace BDDProject.CouponSteps
         }
 
         [Then(@"the coupon should apply a '(.*)' discount")]
-        public void ThenTheTotalValueShouldBeCorrect_(string inputCoupon)
+        public void ThenTheCouponShouldApplyADiscount(string inputCoupon)
         {
             CartPagePOM cart = new CartPagePOM(_driver);
 

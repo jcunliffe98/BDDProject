@@ -23,14 +23,15 @@ namespace BDDProject.PlaceOrderSteps
             _driver = (IWebDriver)_scenarioContext["mydriver"];
         }
 
-        [When(@"I input my address")]
-        public void WhenIInputMyAddress()
+        [When(@"I input '(.*)' as my address")]
+        public void WhenIInputAsMyAddress(string address)
         {
             CartPagePOM cart = new CartPagePOM(_driver);
             cart.ProceedToCheckout();
 
+            List<string> addressList = address.Split(',').ToList();
             BillingPagePOM billing = new BillingPagePOM(_driver);
-            billing.FillBillingInfo("Jack", "Cunliffe", "24 London Street", "London", "SW1A 0AA", "020 7219 4272");
+            billing.FillBillingInfo(addressList[0], addressList[1], addressList[2], addressList[3], addressList[4], addressList[5]);
 
             Console.WriteLine("Address filled in");
 
@@ -38,7 +39,7 @@ namespace BDDProject.PlaceOrderSteps
         }
 
         [When(@"I place the order")]
-        public void WhenPlaceTheOrder()
+        public void WhenIPlaceTheOrder()
         {
             BillingPagePOM billing = new BillingPagePOM(_driver);
             billing.PlaceOrder();

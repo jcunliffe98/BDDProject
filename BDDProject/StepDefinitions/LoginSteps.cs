@@ -21,7 +21,7 @@ namespace BDDProject.LoginSteps
             _driver = (IWebDriver)_scenarioContext["mydriver"];
         }
         [Given(@"I have logged in to my account using '(.*)' and password")]
-        public void GivenIHaveLoggedInToMyAccountUsingAnd(string username)
+        public void GivenIHaveLoggedInToMyAccount(string username)
         {
             string password = TestContext.Parameters["password"]; //Retrieve password from runsettings
 
