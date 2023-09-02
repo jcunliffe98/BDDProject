@@ -23,14 +23,7 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
 
         //Locators
         private IWebElement _addItemToCart => _driver.FindElement(By.CssSelector("[aria-label='Add “" + _item + "” to your cart']"));
-        private IWebElement _viewCart
-        {
-            get
-            {
-                StaticHelpers.WaitForElement(_driver, By.CssSelector("a[title='View cart']"), 5);
-                return _driver.FindElement(By.CssSelector("a[title='View cart']"));
-            }
-        }
+        private IWebElement _viewCart => StaticHelpers.WaitForElement(_driver, By.CssSelector("a[title='View cart']"), 5);
 
         public void AddItem()
         {

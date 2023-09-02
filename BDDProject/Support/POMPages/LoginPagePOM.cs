@@ -19,14 +19,7 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
 
         //Locators
         private IWebElement _usernameField => _driver.FindElement(By.Id("username"));
-        private IWebElement _passwordField
-        {
-            get
-            {
-                StaticHelpers.WaitForElement(_driver, By.Id("password"), 2);
-                return _driver.FindElement(By.Id("password"));
-            }
-        }
+        private IWebElement _passwordField => StaticHelpers.WaitForElement(_driver, By.Id("password"), 2);
 
         private IWebElement _submitButton => _driver.FindElement(By.Name("login"));
         public void SetUsername(string username)

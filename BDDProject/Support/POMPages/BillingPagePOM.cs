@@ -28,14 +28,8 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
 
         private IWebElement _postcodeTextBox => _driver.FindElement(By.CssSelector("#billing_postcode"));
         private IWebElement _phoneTextBox => _driver.FindElement(By.CssSelector("#billing_phone"));
-        private IWebElement _placeOrderTextBox
-        {
-            get
-            {
-                StaticHelpers.WaitForElement(_driver, By.CssSelector("#place_order"), 5);
-                return _driver.FindElement(By.CssSelector("#place_order"));
-            }
-        }
+        private IWebElement _placeOrderTextBox => StaticHelpers.WaitForElement(_driver, By.CssSelector("#place_order"), 5);
+
         private IWebElement _billingInfo => _driver.FindElement(By.CssSelector("#customer_details > div.col-1 > div"));
 
         public void FillBillingInfo(string firstName, string lastName, string address, string city, string postcode, string phoneNumber)

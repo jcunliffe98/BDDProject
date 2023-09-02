@@ -7,10 +7,11 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.Utilities
     internal static class StaticHelpers
     {
 
-        public static void WaitForElement(IWebDriver driver, By Locator, int TimeInSeconds = 5)
+        public static IWebElement WaitForElement(IWebDriver driver, By Locator, int TimeInSeconds = 5)
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(TimeInSeconds));
-            wait.Until(waitForElement => waitForElement.FindElement(Locator).Enabled);
+            wait.Until(elementToBeFound => elementToBeFound.FindElement(Locator).Enabled);
+            return driver.FindElement(Locator);
         }
 
         public static void TakeScreenshot(IWebDriver driver, IWebElement element, string fileName)

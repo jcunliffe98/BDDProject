@@ -20,14 +20,7 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
         //Locators
         private IWebElement _myAccountButton => _driver.FindElement(By.CssSelector("#menu-item-46 > a"));
         private IWebElement _shopButton => _driver.FindElement(By.LinkText("Shop"));
-        private IWebElement _demoBanner
-        {
-            get
-            {
-                StaticHelpers.WaitForElement(_driver, By.CssSelector("body > p > a"), 5);
-                return _driver.FindElement(By.CssSelector("body > p > a"));
-            }
-        }
+        private IWebElement _demoBanner => StaticHelpers.WaitForElement(_driver, By.CssSelector("body > p > a"), 5);
 
         public void NavigateToMyAccount()
         {
