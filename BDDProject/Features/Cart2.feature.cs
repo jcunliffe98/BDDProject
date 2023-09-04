@@ -20,9 +20,9 @@ namespace BDDProject.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Cart")]
+    [NUnit.Framework.DescriptionAttribute("Cart2")]
     [NUnit.Framework.CategoryAttribute("Cart")]
-    public partial class CartFeature
+    public partial class Cart2Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -30,14 +30,14 @@ namespace BDDProject.Features
         private string[] _featureTags = new string[] {
                 "Cart"};
         
-#line 1 "Cart.feature"
+#line 1 "Cart2.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Cart", null, ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Cart2", null, ProgrammingLanguage.CSharp, new string[] {
                         "Cart"});
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -166,14 +166,14 @@ this.ScenarioInitialize(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                             "First Name",
                             "Surname",
                             "Street",
                             "City",
                             "Postcode",
                             "Telephone"});
-                table1.AddRow(new string[] {
+                table2.AddRow(new string[] {
                             "Jack",
                             "Cunliffe",
                             "24 London Street",
@@ -181,7 +181,7 @@ this.FeatureBackground();
                             "SW1A 0AA",
                             "07700900000"});
 #line 15
- testRunner.When("I input my billing details", ((string)(null)), table1, "When ");
+ testRunner.When("I input my billing details", ((string)(null)), table2, "When ");
 #line hidden
 #line 18
  testRunner.And("I place the order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
