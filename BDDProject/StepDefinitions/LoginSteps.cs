@@ -40,8 +40,8 @@ namespace BDDProject.LoginSteps
             NavPOM nav = new NavPOM(_driver);
             nav.NavigateToShop();
 
-            ShopPagePOM shop = new ShopPagePOM(_driver, item);
-            shop.AddItem();
+            ShopPagePOM shop = new ShopPagePOM(_driver);
+            shop.AddItem(item);
             shop.ViewCart();
 
             Console.WriteLine("Item added to cart");

@@ -18,7 +18,7 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
         }
 
         //Locators
-        private IWebElement _orderNumber => _driver.FindElement(By.CssSelector("#post-6 > div > div > div > ul > li.woocommerce-order-overview__order.order > strong"));
+        private IWebElement _orderNumber => _driver.FindElement(By.CssSelector("li.woocommerce-order-overview__order.order > strong"));
         private IWebElement _orderDetails => _driver.FindElement(By.CssSelector("#post-6 > div > div > div > ul"));
 
         public void TakeOrderNumberScreenshot()

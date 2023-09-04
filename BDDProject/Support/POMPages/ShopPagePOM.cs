@@ -15,18 +15,18 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.POMPages
         private IWebDriver _driver;
         private string _item;
 
-        public ShopPagePOM(IWebDriver driver, string item)
+        public ShopPagePOM(IWebDriver driver)
         {
             _driver = driver;
-            _item = item;
         }
 
         //Locators
         private IWebElement _addItemToCart => _driver.FindElement(By.CssSelector("[aria-label='Add “" + _item + "” to your cart']"));
         private IWebElement _viewCart => StaticHelpers.WaitForElement(_driver, By.CssSelector("a[title='View cart']"), 5);
 
-        public void AddItem()
+        public void AddItem(string item)
         {
+            _item = item;
             var actions = new Actions(_driver);
 
             actions.MoveToElement(_addItemToCart);

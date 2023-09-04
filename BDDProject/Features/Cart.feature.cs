@@ -166,14 +166,27 @@ this.ScenarioInitialize(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line hidden
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "First Name",
+                            "Surname",
+                            "Street",
+                            "City",
+                            "Postcode",
+                            "Telephone"});
+                table1.AddRow(new string[] {
+                            "Jack",
+                            "Cunliffe",
+                            "24 London Street",
+                            "London",
+                            "SW1A 0AA",
+                            "07700900000"});
 #line 15
- testRunner.When("I input \'Jack, Cunliffe,24 London Street,London,SW1A 0AA,020 7219 4272\' as my add" +
-                        "ress", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I input my billing details", ((string)(null)), table1, "When ");
 #line hidden
-#line 16
+#line 18
  testRunner.And("I place the order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 17
+#line 19
  testRunner.Then("the order is confirmed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
