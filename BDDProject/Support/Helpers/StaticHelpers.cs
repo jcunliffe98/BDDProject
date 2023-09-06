@@ -20,7 +20,7 @@ namespace uk.co.nfocus.jack.cunliffe.ecommerceproject.Utilities
             var screenshot = ssdriver.GetScreenshot();
             var timestamp = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
             screenshot.SaveAsFile("[" + timestamp + "] " + fileName);
-            TestContext.AddTestAttachment(fileName);
+            TestContext.AddTestAttachment("[" + timestamp + "] " + fileName);
         }
     }
 }
